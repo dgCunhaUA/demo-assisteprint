@@ -10,12 +10,12 @@ _Business management platform for printing services_
 -   🔑 **Demo Access**:
     -   Admin:
         -   demo@assisteprint.com
-        -   admin1234
+        -   assisteprint-demo-password
     -   Staff:
         -   ...
         -   ...
     -   User
-        -   ...
+        -   john@example.com
         -   ...
 
 ---
@@ -46,7 +46,47 @@ It centralizes contract management, copy counts, invoicing, and reporting — re
 
 ## Architecture
 
--   mermaid image
+```mermaid
+
+flowchart TB
+  subgraph User["User"]
+      USER["User Browser"]
+  end
+
+  subgraph Cloud["cPanel Cloud"]
+      CP["cPanel (Web Hosting / Email)"]
+  end
+
+  subgraph ProdVM["Production VM"]
+      subgraph Docker["Docker Containers"]
+          FE["Frontend (React.js)"]
+          BE["Backend (Node.js)"]
+          DB["PostgreSQL"]
+          OS["OpenSearch"]
+      end
+  end
+
+  subgraph HyperV["Hyper-V Host"]
+      NGINX["Nginx Reverse Proxy VM"]
+      ProdVM
+      Demo["Demo & Staging VM"]
+  end
+
+  subgraph OnPrem["On-Premise Infrastructure"]
+      ISP["ISP Connection"]
+      RT["MikroTik Router"]
+      HyperV
+  end
+
+  NGINX --> ProdVM
+  NGINX --> Demo
+
+  USER --> CP
+  CP <--> ISP
+  ISP --> RT
+  RT --> NGINX
+
+```
 
 ## 👤 Author
 
@@ -54,39 +94,3 @@ It centralizes contract management, copy counts, invoicing, and reporting — re
 
 -   📧 diocunha@outlook.pt
 -   💼 [LinkedIn](https://www.linkedin.com/in/diogo-cunha-a86185177/)
-
-```mermaid
-flowchart TB
-    subgraph Cloud["☁️ cPanel Cloud"]
-        CP["cPanel (Web Hosting, Email)"]
-    end
-
-    subgraph OnPrem["🏠 On-Premise Infrastructure"]
-        ISP["ISP Connection"]
-        RT["MikroTik Router"]
-
-        subgraph HyperV["Hyper-V Host"]
-            NGINX["Nginx Reverse Proxy VM"]
-
-            subgraph ProdVM["Production VM"]
-                subgraph Docker["Docker Containers"]
-                    FE["Frontend (React.js)"]
-                    BE["Backend (Node.js)"]
-                    DB["PostgreSQL"]
-                    OS["OpenSearch"]
-                end
-            end
-
-            Demo["Demo & Staging VM"]
-
-        end
-    end
-
-    CP <--> ISP
-    ISP --> RT
-    RT --> NGINX
-    NGINX --> ProdVM
-    NGINX --> Demo
-
-
-```
