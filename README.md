@@ -6,6 +6,8 @@ _Business management platform for printing services_
 
 ## 🌐 Demo
 
+You can explore the demo environment below.
+
 -   🚀 **Live Demo**: [demo.assisteprint.com](https://demo.assisteprint.com)
 -   🔑 **Demo Access**:
     -   Admin:
@@ -17,6 +19,8 @@ _Business management platform for printing services_
     -   User
         -   john@example.com
         -   ...
+
+⚠️ _Note: Some operations are disabled in the demo version. For questions or feedback, feel free to reach out._
 
 ---
 
@@ -30,8 +34,9 @@ It centralizes contract management, copy counts, invoicing, and reporting — re
 ## ✨ Key Aspects
 
 -   🔐 **Role-based access control (RBAC)** — secure and granular permissions (admin, staff, user)
--   💰 **Sage integration** — automated invoicing to reduce errors and save time
+-   💰 **Sage integration** — third party integration for automated invoicing to reduce errors and save time
 -   📊 **Dashboards & reports** — real-time insights into contracts, machines, and profitability
+-   📋 **Ticket Board** — Jira style ticket board for management of staff
 
 ---
 
@@ -44,7 +49,7 @@ It centralizes contract management, copy counts, invoicing, and reporting — re
 
 ---
 
-## Architecture
+## 🏗️ Architecture
 
 ```mermaid
 
